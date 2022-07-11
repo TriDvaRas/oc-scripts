@@ -1,4 +1,5 @@
 local internet = require("internet")
+local term = require("term")
 local JSON = assert(loadfile "JSON.lua")()
 local handle = internet.request("http://castlots.org/generator-anekdotov-online/generate.php", "", {
     ["charset"]="utf-8",
@@ -14,5 +15,7 @@ local result = ""
 for chunk in handle do result = result..chunk end
 local obj = JSON:decode(result)
 
-os.execute("clear")
-print(obj.va)
+term.clear()
+term.write(obj.va, true)
+---@diagnostic disable-next-line: undefined-field
+os.sleep(30)
