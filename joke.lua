@@ -14,4 +14,5 @@ local result = ""
 for chunk in handle do result = result..chunk end
 local obj = JSON:decode(result)
 
+os.execute("clear")
 print(obj.va)
