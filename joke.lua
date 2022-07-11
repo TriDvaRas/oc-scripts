@@ -1,4 +1,5 @@
 local internet = require("internet")
+local JSON = assert(loadfile "JSON.lua")()
 local handle = internet.request("http://castlots.org/generator-anekdotov-online/generate.php", "", {
     ["charset"]="utf-8",
     ["accept"] = "application/json, text/javascript, */*; q=0.01",
@@ -11,4 +12,6 @@ local handle = internet.request("http://castlots.org/generator-anekdotov-online/
 }, "POST")
 local result = ""
 for chunk in handle do result = result..chunk end
-print(result)
+local obj = JSON:decode(result)
+
+print(obj.va)
